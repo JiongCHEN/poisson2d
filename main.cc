@@ -8,8 +8,8 @@ using namespace std;
 using namespace poisson;
 using namespace Eigen;
 
-#define XDIM   256
-#define YDIM   256
+#define XDIM   128
+#define YDIM   128
 #define WIDTH  1.0
 #define HEIGHT 1.0
 

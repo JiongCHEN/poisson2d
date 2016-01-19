@@ -11,7 +11,7 @@ class grid2d
 {
 public:
   grid2d(const T2 nx, const T2 ny, const T1 w, const T1 h)
-    : nx_(nx), ny_(ny), dim_(nx*ny), w_(w), h_(h), dx_(w/nx), dy_(h/ny) {
+    : nx_(nx), ny_(ny), dim_(nx*ny), w_(w), h_(h), dx_(w/(nx-1)), dy_(h/(ny-1)) {
     data_ = (T1 *)malloc(sizeof(T1)*dim_);
     memset(data_, 0, sizeof(T1)*dim_);
   }

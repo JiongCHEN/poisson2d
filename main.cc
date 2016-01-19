@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
     }
   }
   Map<VectorXd> x(grid->data(), grid->dim());
-  cout << "[INFO] error norm: " << (xstar-x).norm() << endl;
+  cout << "[INFO] error infinity norm: " << (xstar-x).lpNorm<Infinity>() << endl;
 
   dump(argv[1], grid);
 

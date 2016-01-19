@@ -8,8 +8,8 @@ using namespace std;
 using namespace poisson;
 using namespace Eigen;
 
-#define XDIM   128
-#define YDIM   128
+#define XDIM   512
+#define YDIM   512
 #define WIDTH  1.0
 #define HEIGHT 1.0
 
@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
   delete prb;
   delete grid;
   delete fx;
-
   cout << "[INFO] done\n";
   return 0;
 }

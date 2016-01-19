@@ -1,4 +1,4 @@
-# poisson-2d 
+# poisson2d 
 
 This is a simple framework for solving PDE on 2D regular grid.
 

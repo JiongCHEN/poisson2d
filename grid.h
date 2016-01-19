@@ -66,6 +66,11 @@ public:
     return by*(bx*(*this)(x0, y0)+ax*(*this)(x1, y0))+
            ay*(bx*(*this)(x0, y1)+ax*(*this)(x1, y1));
   }
+  bool is_valid(const T2 i, const T2 j) const {
+    if ( i >= 0 && i < nx_ && j >= 0 && j < ny_ )
+      return true;
+    return false;
+  }
 private:
   const T2 nx_, ny_, dim_;
   const T1 w_, h_;

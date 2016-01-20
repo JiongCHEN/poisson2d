@@ -1,7 +1,7 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <algorithm>
+#include <cmath>
 
 namespace poisson {
 
@@ -67,9 +67,7 @@ public:
            ay*(bx*(*this)(x0, y1)+ax*(*this)(x1, y1));
   }
   bool is_valid(const T2 i, const T2 j) const {
-    if ( i >= 0 && i < nx_ && j >= 0 && j < ny_ )
-      return true;
-    return false;
+    return ( i >= 0 && i < nx_ && j >= 0 && j < ny_  );
   }
 private:
   const T2 nx_, ny_, dim_;

@@ -31,8 +31,8 @@ void remove_vector_row(Eigen::Matrix<T1, -1, 1> &b, const std::vector<T2> &g2l) 
     if ( g2l[i] != static_cast<T2>(-1) )
       ++new_size;
   }
-  Eigen::Matrix<T1, -1, 1> sub;
-  sub.resize(new_size);
+  Eigen::Matrix<T1, -1, 1> sub(new_size);
+  sub.setZero();
 #pragma omp parallel for
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )

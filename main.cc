@@ -8,8 +8,8 @@ using namespace std;
 using namespace poisson;
 using namespace Eigen;
 
-#define XDIM   512
-#define YDIM   512
+#define XDIM   16
+#define YDIM   16
 #define WIDTH  1.0
 #define HEIGHT 1.0
 
@@ -49,7 +49,7 @@ private:
 int main(int argc, char *argv[])
 {
   if ( argc != 2 ) {
-    cerr << "# Usage: grid.dat\n";
+    cerr << "# Usage: main grid.dat\n";
     return __LINE__;
   }
   grid2d<double, int> *grid = new grid2d<double, int>(XDIM, YDIM, WIDTH, HEIGHT);
@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
   prb->set_dirichlet_bc(grid);
   prb->config_rhs(grid);
   prb->solve(grid);
+  Map<const VectorXd> x(grid->data(), grid->dim());
 
   // analytic solution
   func2d<double> *fx = new stress_distribution<double>(1.0, WIDTH, HEIGHT);
@@ -68,7 +69,6 @@ int main(int argc, char *argv[])
       xstar[grid->idx(i, j)] = (*fx)(x, y);
     }
   }
-  Map<VectorXd> x(grid->data(), grid->dim());
   cout << "[INFO] error infinity norm: " << (xstar-x).lpNorm<Infinity>() << endl;
 
   dump(argv[1], grid);

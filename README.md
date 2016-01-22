@@ -10,10 +10,8 @@ The given example gives the numerical solution to a 2D Laplace equation:
 
 with the dirichlet boundary conditions:
 
-```latex
     f = 0,  if x = 0, y = 0, x = a;
     f = w_0\sin\frac{\pi x}{a}, if y = b
-```
 
 The known analytic solution to this problem is
 

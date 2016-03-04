@@ -31,6 +31,7 @@ static int dump(const char *filename, const grid2d<T1, T2> *g) {
     }
     ofs << "\n";
   }
+  ofs.close();
   return 0;
 }
 

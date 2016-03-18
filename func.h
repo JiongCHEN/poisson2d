@@ -9,6 +9,7 @@ template <typename T>
 class func2d {
 public:
   virtual T operator ()(const T x, const T y) = 0;
+  virtual T operator ()(const T x, const T y, const T t) { return 0.0; }
 };
 
 template <typename T>

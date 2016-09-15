@@ -5,9 +5,21 @@
 
 namespace poisson {
 
+/* for std::vector and zjucad::matrix */
+template <class Con>
+struct value_type_trait {
+  typedef typename Con::value_type value_type;
+};
+
+/* for Eigen::VectorXi */
+template <typename INT>
+struct value_type_trait<Eigen::Matrix<INT, -1, 1>> {
+  typedef INT value_type;
+};
+
 template <typename T1, class Container>
 void rm_spmat_row_col(Eigen::SparseMatrix<T1> &A, const Container &g2l) {
-  typedef typename Container::value_type T2;
+  typedef typename value_type_trait<Container>::value_type T2;
   T2 new_size = 0;
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )
@@ -27,7 +39,7 @@ void rm_spmat_row_col(Eigen::SparseMatrix<T1> &A, const Container &g2l) {
 
 template <typename T1, class Container>
 void remove_vector_row(Eigen::Matrix<T1, -1, 1> &b, const Container &g2l) {
-  typedef typename Container::value_type T2;
+  typedef typename value_type_trait<Container>::value_type T2;
   T2 new_size = 0;
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )
@@ -45,7 +57,7 @@ void remove_vector_row(Eigen::Matrix<T1, -1, 1> &b, const Container &g2l) {
 
 template <typename T1, class Container>
 void recover_vector_row(const Eigen::Matrix<T1, -1, 1> &l, const Container &g2l, Eigen::Matrix<T1, -1, 1> &g) {
-  typedef typename Container::value_type T2;
+  typedef typename value_type_trait<Container>::value_type T2;
 #pragma omp parallel for
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )

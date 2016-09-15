@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
   prb->solve(grid.get());
   Map<const VectorXd> x(grid->data(), grid->dim());
 
-  // analytic solution
-  func2d<double> *fx = new stress_distribution<double>(1.0, WIDTH, HEIGHT);
+  // sampling analytic solution
+  shared_ptr<func2d<double>> fx = make_shared<stress_distribution<double>>(1.0, WIDTH, HEIGHT);
   VectorXd xstar(grid->dim());
   for (int i = 0; i < grid->nx(); ++i) {
     for (int j = 0; j < grid->ny(); ++j) {

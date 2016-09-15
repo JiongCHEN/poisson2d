@@ -5,8 +5,9 @@
 
 namespace poisson {
 
-template <typename T1, typename T2>
-void rm_spmat_row_col(Eigen::SparseMatrix<T1> &A, const std::vector<T2> &g2l) {
+template <typename T1, class Container>
+void rm_spmat_row_col(Eigen::SparseMatrix<T1> &A, const Container &g2l) {
+  typedef typename Container::value_type T2;
   T2 new_size = 0;
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )
@@ -24,8 +25,9 @@ void rm_spmat_row_col(Eigen::SparseMatrix<T1> &A, const std::vector<T2> &g2l) {
   A.setFromTriplets(trips.begin(), trips.end());
 }
 
-template <typename T1, typename T2>
-void remove_vector_row(Eigen::Matrix<T1, -1, 1> &b, const std::vector<T2> &g2l) {
+template <typename T1, class Container>
+void remove_vector_row(Eigen::Matrix<T1, -1, 1> &b, const Container &g2l) {
+  typedef typename Container::value_type T2;
   T2 new_size = 0;
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )
@@ -41,8 +43,9 @@ void remove_vector_row(Eigen::Matrix<T1, -1, 1> &b, const std::vector<T2> &g2l) 
   b = sub;
 }
 
-template <typename T1, typename T2>
-void recover_vector_row(const Eigen::Matrix<T1, -1, 1> &l, const std::vector<T2> &g2l, Eigen::Matrix<T1, -1, 1> &g) {
+template <typename T1, class Container>
+void recover_vector_row(const Eigen::Matrix<T1, -1, 1> &l, const Container &g2l, Eigen::Matrix<T1, -1, 1> &g) {
+  typedef typename Container::value_type T2;
 #pragma omp parallel for
   for (T2 i = 0; i < g2l.size(); ++i) {
     if ( g2l[i] != static_cast<T2>(-1) )

@@ -15,7 +15,7 @@ public:
     data_ = (T1 *)malloc(sizeof(T1)*dim_);
     memset(data_, 0, sizeof(T1)*dim_);
   }
-  ~grid2d() {
+  virtual ~grid2d() {
     free(data_);
   }
   T2 nx() const {

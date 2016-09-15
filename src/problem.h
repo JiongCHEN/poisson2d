@@ -76,8 +76,8 @@ public:
     rhs_ -= L_*X;
     Eigen::SimplicialCholesky<Eigen::SparseMatrix<T1>> solver;
     if ( !fixDoF_.empty() ) {
-      rm_spmat_row_col<T1, T2>(L_, g2l_);
-      remove_vector_row<T1, T2>(rhs_, g2l_);
+      rm_spmat_row_col(L_, g2l_);
+      remove_vector_row(rhs_, g2l_);
     }
     solver.compute(L_);
     assert(solver.info() == Eigen::Success);
@@ -86,7 +86,7 @@ public:
     Eigen::Matrix<T1, -1, 1> DX;
     DX.setZero(g->dim());
     if ( !fixDoF_.empty() )
-      recover_vector_row<T1, T2>(dx, g2l_, DX);
+      recover_vector_row(dx, g2l_, DX);
     else
       DX = dx;
     X += DX;
@@ -205,8 +205,8 @@ public:
       rhs_ -= LHS*X;
       Eigen::SimplicialCholesky<Eigen::SparseMatrix<T1>> solver;
       if ( !fixDoF_.empty() ) {
-        rm_spmat_row_col<T1, T2>(LHS, g2l_);
-        remove_vector_row<T1, T2>(rhs_, g2l_);
+        rm_spmat_row_col(LHS, g2l_);
+        remove_vector_row(rhs_, g2l_);
       }
       solver.compute(LHS);
       assert(solver.info() == Eigen::Success);
@@ -215,7 +215,7 @@ public:
       Eigen::Matrix<T1, -1, 1> DX;
       DX.setZero(g->dim());
       if ( !fixDoF_.empty() )
-        recover_vector_row<T1, T2>(dx, g2l_, DX);
+        recover_vector_row(dx, g2l_, DX);
       else
         DX = dx;
       X += DX;

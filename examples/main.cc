@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <memory>
 
 #include "src/problem.h"
 #include "src/func.h"
@@ -53,12 +54,12 @@ int main(int argc, char *argv[])
     cerr << "# Usage: main grid.dat\n";
     return __LINE__;
   }
-  grid2d<double, int> *grid = new grid2d<double, int>(XDIM, YDIM, WIDTH, HEIGHT);
-  problem<double, int> *prb = new laplace_equation<double, int>();
-  prb->config_operator(grid);
-  prb->set_dirichlet_bc(grid);
-  prb->config_rhs(grid);
-  prb->solve(grid);
+  shared_ptr<grid2d<double, int>> grid = make_shared<grid2d<double, int>>(XDIM, YDIM, WIDTH, HEIGHT);
+  shared_ptr<problem<double, int>> prb = make_shared<laplace_equation<double, int>>();
+  prb->config_operator(grid.get());
+  prb->set_dirichlet_bc(grid.get());
+  prb->config_rhs(grid.get());
+  prb->solve(grid.get());
   Map<const VectorXd> x(grid->data(), grid->dim());
 
   // analytic solution
@@ -72,11 +73,8 @@ int main(int argc, char *argv[])
   }
   cout << "[INFO] error infinity norm: " << (xstar-x).lpNorm<Infinity>() << endl;
 
-  dump(argv[1], grid);
-
-  delete prb;
-  delete grid;
-  delete fx;
+  dump(argv[1], grid.get());
+  
   cout << "[INFO] done\n";
   return 0;
 }

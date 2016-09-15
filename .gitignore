@@ -1,6 +1,10 @@
-build/
+/build
 *.user.*
 *.user
 *.dat
 func.png
 *.svg
+*~
+
+/doc
+!/doc/*.tex

@@ -5,6 +5,5 @@ list(APPEND CMAKE_CXX_FLAGS "-std=c++0x")
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-add_executable(main main.cc)
-
-add_executable(main_heat main_heat.cc)
+add_subdirectory(examples)
+add_subdirectory(src)

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "problem.h"
-#include "func.h"
+#include "src/problem.h"
+#include "src/func.h"
 
 using namespace std;
 using namespace poisson;

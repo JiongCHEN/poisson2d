@@ -20,7 +20,7 @@ f(x,y) = \frac{w_0}{\sinh\frac{\pi b}{a}}\sin\frac{\pi x}{a}\sinh\frac{\pi y}{a}
 ```
 And the result is well fitted to the analytic one.
 
-![image] (comparison.png)
+![image] (result/comparison.png)
 
 ## Heat Equation
 
@@ -30,4 +30,4 @@ Add a new example of solving heat equation on 2D rectangular domain.
 \frac{\partial u}{\partial t}=D\Delta u
 ```
 
-![image] (diffusion.gif)
+![image] (result/diffusion.gif)

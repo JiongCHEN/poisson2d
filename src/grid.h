@@ -2,6 +2,7 @@
 #define GRID_H
 
 #include <cmath>
+#include <cstring>
 
 namespace poisson {
 
@@ -10,6 +11,13 @@ template <typename T1, typename T2>
 class grid2d
 {
 public:
+  typedef T1           value_type;
+  typedef T2           size_type;
+  typedef T1*          iterator;
+  typedef const T1*    const_iterator;
+  typedef T1&          reference;
+  typedef const T1&    const_reference;
+
   grid2d(const T2 nx, const T2 ny, const T1 w, const T1 h)
     : nx_(nx), ny_(ny), dim_(nx*ny), w_(w), h_(h), dx_(w/(nx-1)), dy_(h/(ny-1)) {
     data_ = (T1 *)malloc(sizeof(T1)*dim_);
@@ -17,6 +25,12 @@ public:
   }
   virtual ~grid2d() {
     free(data_);
+  }
+  iterator begin() const {
+    return data_;
+  }
+  iterator end() const {
+    return data_+dim_;
   }
   T2 nx() const {
     return nx_;
@@ -39,7 +53,7 @@ public:
   T1 dy() const {
     return dy_;
   }
-  T1* data() const {
+  iterator data() const {
     return data_;
   }
   void clamp(T2 &i, T2 &j) const {
@@ -49,7 +63,7 @@ public:
   T2 idx(const T2 i, const T2 j) const {
     return j*nx_+i;
   }
-  T1& operator ()(const T2 i, const T2 j) {
+  reference operator ()(const T2 i, const T2 j) {
     return data_[idx(i, j)];
   }
   T1 operator ()(const T2 i, const T2 j) const {

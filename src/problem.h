@@ -5,7 +5,6 @@
 #include <eigen3/Eigen/Sparse>
 
 #include "grid.h"
-#include "func.h"
 #include "util.h"
 
 namespace poisson {

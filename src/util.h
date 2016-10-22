@@ -65,5 +65,21 @@ void recover_vector_row(const Eigen::Matrix<T1, -1, 1> &l, const Container &g2l,
   }
 }
 
+template <typename T>
+inline T cubic_interp(const T interp, const T* pts) {
+  T d0 = (pts[2]-pts[0])*0.5;
+  T d1 = (pts[3]-pts[1])*0.5;
+  T dk = (pts[2]-pts[1]);
+
+  T a0 = pts[1];
+  T a1 = d0;
+  T a2 = 3.0*dk-2.0*d0-d1;
+  T a3 = -2.0*dk+d0+d1;
+
+  T i2 = interp*interp;
+  T i3 = i2*interp;
+  return a3*i3+a2*i2+a1*interp+a0;
+}
+
 }
 #endif

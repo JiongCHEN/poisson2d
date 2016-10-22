@@ -1,7 +1,7 @@
 project(poisson2d)
 cmake_minimum_required(VERSION 2.8)
 
-list(APPEND CMAKE_CXX_FLAGS "-std=c++0x")
+list(APPEND CMAKE_CXX_FLAGS "-std=c++0x -fopenmp")
 
 include_directories(${PROJECT_SOURCE_DIR})
 

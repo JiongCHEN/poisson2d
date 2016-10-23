@@ -31,3 +31,13 @@ Add a new example of solving heat equation on 2D rectangular domain.
 ```
 
 ![image] (result/diffusion.gif)
+
+## Advection Equation
+
+New example on solving advection equation by semi-Lagrange scheme.
+
+```latex
+\partial_{t}T+\mathbf{u}\cdot\nabla T = 0
+```
+
+![image] (result/adv.gif)
